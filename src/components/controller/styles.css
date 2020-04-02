@@ -15,3 +15,15 @@
   display: flex;
   align-items: center;
 }
+
+.steps {
+  display: flex;
+  justify-content: flex-end;
+  align-content: space-between;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+.step {
+  padding: 5px 15px;
+}
