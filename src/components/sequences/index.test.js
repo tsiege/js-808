@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import { isElementOfType } from 'react-dom/test-utils';
-import Button from '.'
+import Sequence from '.'
 
 test('renders itself', () => {
-  const { baseElement } = render(<Button playing='playing' />)
-  isElementOfType(baseElement, <button></button>)
+  const { getByText } = render(<Sequence sequences={['Sequence 1']}/>)
+  const h1Element = getByText(/Sequence 1/i)
+  expect(h1Element).toBeInTheDocument()
 })
