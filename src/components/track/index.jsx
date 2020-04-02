@@ -10,8 +10,8 @@ export default class Track extends React.Component {
 
   componentDidUpdate(prev) {
     if (Number.isInteger(prev.step) && prev.isPlaying) {
-      const { stepStates } = this.state
-      if (stepStates[prev.step]) {
+      const { sequence } = this.props
+      if (sequence[prev.step]) {
         this.playEffect()
       }
     }
@@ -32,12 +32,11 @@ export default class Track extends React.Component {
     const steps = []
     for (let i = 0; i < 16; i++) {
       const playingClassname = step === i ? 'playing' : ''
-      const isOn = sequence[i]
       steps.push(
         <StepButton
           key={i}
           step={i}
-          isOn={isOn}
+          isOn={sequence[i]}
           playing={playingClassname}
           toggleStepState={this.toggleStepState}
         />
