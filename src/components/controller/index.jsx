@@ -53,7 +53,7 @@ export default class Controller extends React.Component {
       step: null,
       interval: null,
       isPlaying: false,
-      currentSequence: deepClone(SEQUENCES['Sequence 1'])
+      ...deepClone(SEQUENCES['Sequence 1'])
     }
   }
 
@@ -98,8 +98,16 @@ export default class Controller extends React.Component {
   }
 
   selectSequence = (name) => {
-    console.log(name)
-    this.setState({ currentSequence: deepClone(SEQUENCES[name]) })
+    this.setState({ ...deepClone(SEQUENCES[name]) })
+  }
+
+  toggleSequence = (name, i) => {
+    const currentSequence = this.state[name]
+    const updatedSequence = deepClone(currentSequence)
+    const step = updatedSequence[i]
+    updatedSequence[i] = !step
+    console.log({ name, i, step, notStep: !step })
+    this.setState({ [name]: updatedSequence })
   }
 
   renderPlayButton() {
@@ -121,8 +129,15 @@ export default class Controller extends React.Component {
   renderTracks() {
     const { step, isPlaying } = this.state
     return TRACKS.map((name, i) => {
-      // const sequence = SEQUENCES[name]
-      return <Track key={i} name={name} step={step} isPlaying={isPlaying} />
+      const sequence = this.state[name]
+      return <Track
+        key={i}
+        name={name}
+        step={step}
+        isPlaying={isPlaying}
+        sequence={sequence}
+        toggleSequence={this.toggleSequence}
+      />
     })
   }
 
