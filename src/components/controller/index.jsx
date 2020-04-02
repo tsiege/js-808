@@ -1,6 +1,14 @@
 import React from 'react'
 import './styles.css'
 
+// At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
+// We can assume that 8 steps = 1 bar, representing 4 beats.
+// In other words, a 8 step pattern would take (60/BPM)*4 seconds to play and each step would take ((60/BPM)*4)/8 seconds.
+// but this has 16 steps, so I think it is ((60/BPM)*4)/16 ?? 8 feels slow
+function stepPerMs(bpm = 128) {
+  return (((60 / bpm) * 4) / 16) * 1000
+}
+
 export default class Controller extends React.Component {
   constructor(props) {
     super(props)
@@ -25,7 +33,7 @@ export default class Controller extends React.Component {
         } else {
           this.setState({ step: step + 1 })
         }
-      }, bpm)
+      }, stepPerMs(bpm))
       this.setState({ isPlaying: true, interval })
     }
   }
