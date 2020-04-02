@@ -43,9 +43,9 @@
 
 .toolbar input {
   text-align: center;
-  margin: 0;
+  margin: 2px;
   border: 1px solid var(--fontGrey);
-  width: 45px;
+  width: 50px;
   height: 30px;
   font-size: 15px;
   font-weight: 700;
@@ -55,6 +55,7 @@
 
 .bpm {
   padding: 0 5px;
+  margin-right: 20px;
 }
 
 .steps {

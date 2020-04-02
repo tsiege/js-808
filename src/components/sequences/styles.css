@@ -1,5 +1,5 @@
 .Sequence {
-  border: 1px solid var(--lightGrey);
+  border: 1px solid var(--fontGrey);
   height: 34px;
   background-color: var(--darkGrey);
   color: var(--fontGrey);

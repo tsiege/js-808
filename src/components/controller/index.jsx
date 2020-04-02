@@ -72,8 +72,8 @@ export default class Controller extends React.Component {
   renderPlayButton() {
     const { isPlaying } = this.state
     const innerHTML = isPlaying ?
-      <svg width="15" height="15" id="Capa_1" enable-background="new 0 0 424.236 424.236"  viewBox="0 0 424.236 424.236" xmlns="http://www.w3.org/2000/svg"><path id="path-1_5_" d="m247.471 0h176.765v424.236h-176.765z" transform="translate(9 2)"/><path id="path-1_4_" d="m0 0h176.765v424.236h-176.765z" transform="translate(2 2)"/></svg> :
-      <svg width="20" height="20" enable-background="new 0 0 494.942 494.942" viewBox="0 0 494.942 494.942" xmlns="http://www.w3.org/2000/svg"><path d="m35.353 0 424.236 247.471-424.236 247.471z"/></svg>
+      <svg width="15" height="15" id="Capa_1"  viewBox="0 0 424.236 424.236" xmlns="http://www.w3.org/2000/svg"><path id="path-1_5_" d="m247.471 0h176.765v424.236h-176.765z" transform="translate(9 2)"/><path id="path-1_4_" d="m0 0h176.765v424.236h-176.765z" transform="translate(2 2)"/></svg> :
+      <svg width="20" height="20" viewBox="0 0 494.942 494.942" xmlns="http://www.w3.org/2000/svg"><path d="m35.353 0 424.236 247.471-424.236 247.471z"/></svg>
     return <button className="play" onClick={this.togglePlay}>{innerHTML}</button>
   }
 
@@ -109,7 +109,7 @@ export default class Controller extends React.Component {
           <h1 className="title">JS-808</h1>
           <span className="toolbar">
             <button className="stop" onClick={this.stop}>
-              <svg width="15" height="15" id="Layer_1" enable-background="new 0 0 506.1 506.1" viewBox="0 0 506.1 506.1" xmlns="http://www.w3.org/2000/svg"><path d="m489.609 0h-473.118c-9.108 0-16.491 7.383-16.491 16.491v473.118c0 9.107 7.383 16.491 16.491 16.491h473.119c9.107 0 16.49-7.383 16.49-16.491v-473.118c0-9.108-7.383-16.491-16.491-16.491z"/></svg>
+              <svg width="15" height="15" id="Layer_1" viewBox="0 0 506.1 506.1" xmlns="http://www.w3.org/2000/svg"><path d="m489.609 0h-473.118c-9.108 0-16.491 7.383-16.491 16.491v473.118c0 9.107 7.383 16.491 16.491 16.491h473.119c9.107 0 16.49-7.383 16.49-16.491v-473.118c0-9.108-7.383-16.491-16.491-16.491z"/></svg>
             </button>
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
