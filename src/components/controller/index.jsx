@@ -1,49 +1,9 @@
 import React from 'react'
 import Track from '../track'
 import Sequence from '../sequences'
+import { deepClone, stepPerMs } from '../../utils'
+import { TRACKS, SEQUENCES, SEQUENCE_NAMES } from '../../utils/data'
 import './styles.css'
-
-const TRACKS = ['Kick', 'Snare', 'Open Hat', 'Closed Hat']
-
-const SEQUENCE_NAMES = ['Sequence 1', 'Sequence 2', 'Sequence 3', 'None']
-const SEQUENCES = {
-  'Sequence 1': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  'Sequence 2': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  'Sequence 3': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  None: {
-    Kick:         new Array(16).fill(false),
-    Snare:        new Array(16).fill(false),
-    'Open Hat':   new Array(16).fill(false),
-    'Closed Hat': new Array(16).fill(false),
-  }
-}
-
-// At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
-// We can assume that 8 steps = 1 bar, representing 4 beats.
-// In other words, a 8 step pattern would take (60/BPM)*4 seconds to play and each step would take ((60/BPM)*4)/8 seconds.
-// but this has 16 steps, so I think it is ((60/BPM)*4)/16 ?? 8 feels slow
-function stepPerMs(bpm = 128) {
-  return (((60 / bpm) * 4) / 16) * 1000
-}
-
-function deepClone (obj) {
-  return JSON.parse(JSON.stringify(obj))
-}
 
 export default class Controller extends React.Component {
   constructor(props) {
