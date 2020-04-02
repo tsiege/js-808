@@ -20,6 +20,12 @@ export default class Controller extends React.Component {
     }
   }
 
+  stop = () => {
+    const { interval } = this.state
+    clearInterval(interval)
+    this.setState({ interval: null, isPlaying: false, step: null })
+  }
+
   togglePlay = () => {
     const { isPlaying, interval, bpm } = this.state
     if (isPlaying) {
@@ -60,7 +66,7 @@ export default class Controller extends React.Component {
         <div className="header">
           <h1 className="title">JS-808</h1>
           <span className="toolbar">
-            <button>stop</button>
+            <button onClick={this.stop}>stop</button>
             {this.renderPlayButton()}
             <span>128</span>
             {/* <input value="128"/> */}
