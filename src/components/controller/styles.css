@@ -33,5 +33,24 @@
 
 .step.playing {
   color: white;
-  background-color: indianred;
+}
+
+.step.playing:nth-child(n):nth-last-child(n+13) {
+  background-color: var(--stepRed);
+  box-shadow: 0 0 10px var(--stepRed);
+}
+
+.step.playing:nth-child(n+5):nth-last-child(n+9) {
+  background-color: var(--stepOrange);
+  box-shadow: 0 0 10px var(--stepOrange);
+}
+
+.step.playing:nth-child(n+9):nth-last-child(n+5) {
+  background-color: var(--stepYellow);
+  box-shadow: 0 0 10px var(--stepYellow);
+}
+
+.step.playing:nth-child(n+13):nth-last-child(n) {
+  background-color: var(--stepWhite);
+  box-shadow: 0 0 10px var(--stepWhite);
 }
