@@ -66,7 +66,6 @@ export default class Controller extends React.Component {
     const updatedSequence = deepClone(currentSequence)
     const step = updatedSequence[i]
     updatedSequence[i] = !step
-    console.log({ name, i, step, notStep: !step })
     this.setState({ [name]: updatedSequence })
   }
 
