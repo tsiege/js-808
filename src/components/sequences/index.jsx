@@ -4,8 +4,7 @@ import './styles.css'
 export default class Sequence extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props.sequences[0])
-    this.state = {value: this.props.sequences[0]}
+    this.state = { value: this.props.sequences[0] }
   }
 
   handleChange = ({ target: { value } }) => {

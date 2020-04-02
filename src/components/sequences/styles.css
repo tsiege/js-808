@@ -1,9 +1,10 @@
-.step-button {
-  height: 50px;
-  width: 30px;
-  margin: 5px 5px 0;
-}
-
-.step-button.on {
-  background-color: salmon;
+.Sequence {
+  border: 1px solid var(--fontGrey);
+  height: 34px;
+  background-color: var(--darkGrey);
+  color: var(--fontGrey);
+  text-transform: uppercase;
+  width: 110px;
+  font-size: 12px;
+  font-weight: 700;
 }

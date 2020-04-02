@@ -2,8 +2,45 @@
   height: 50px;
   width: 30px;
   margin: 5px 5px 0;
+  border-radius: 2px;
 }
 
-.step-button.on {
-  background-color: salmon;
+.step-button:hover {
+  cursor: pointer;
+}
+
+.step-button:nth-child(n):nth-last-child(n+13).on {
+  background-color: var(--stepRed);
+}
+
+.step-button:nth-child(n):nth-last-child(n+13).playing {
+  border: 0;
+  box-shadow: 0 0 10px var(--stepRed);
+}
+
+.step-button:nth-child(n+5):nth-last-child(n+9).on {
+  background-color: var(--stepOrange);
+}
+
+.step-button:nth-child(n+5):nth-last-child(n+9).playing {
+  border: 0;
+  box-shadow: 0 0 10px var(--stepOrange);
+}
+
+.step-button:nth-child(n+9):nth-last-child(n+5).on {
+  background-color: var(--stepYellow);
+}
+
+.step-button:nth-child(n+9):nth-last-child(n+5).playing {
+  border: 0;
+  box-shadow: 0 0 10px var(--stepYellow);
+}
+
+.step-button:nth-child(n+13):nth-last-child(n).on {
+  background-color: var(--stepBeige);
+}
+
+.step-button:nth-child(n+13):nth-last-child(n).playing {
+  border: 0;
+  box-shadow: 0 0 10px var(--stepBeige);
 }

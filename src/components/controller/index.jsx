@@ -1,49 +1,9 @@
 import React from 'react'
 import Track from '../track'
 import Sequence from '../sequences'
+import { deepClone, stepPerMs } from '../../utils'
+import { TRACKS, SEQUENCES, SEQUENCE_NAMES } from '../../utils/data'
 import './styles.css'
-
-const TRACKS = ['Kick', 'Snare', 'Open Hat', 'Closed Hat']
-
-const SEQUENCE_NAMES = ['Sequence 1', 'Sequence 2', 'Sequence 3', 'None']
-const SEQUENCES = {
-  'Sequence 1': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  'Sequence 2': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  'Sequence 3': {
-    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
-    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
-    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
-    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
-  },
-  None: {
-    Kick:         new Array(16).fill(false),
-    Snare:        new Array(16).fill(false),
-    'Open Hat':   new Array(16).fill(false),
-    'Closed Hat': new Array(16).fill(false),
-  }
-}
-
-// At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
-// We can assume that 8 steps = 1 bar, representing 4 beats.
-// In other words, a 8 step pattern would take (60/BPM)*4 seconds to play and each step would take ((60/BPM)*4)/8 seconds.
-// but this has 16 steps, so I think it is ((60/BPM)*4)/16 ?? 8 feels slow
-function stepPerMs(bpm = 128) {
-  return (((60 / bpm) * 4) / 16) * 1000
-}
-
-function deepClone (obj) {
-  return JSON.parse(JSON.stringify(obj))
-}
 
 export default class Controller extends React.Component {
   constructor(props) {
@@ -106,14 +66,15 @@ export default class Controller extends React.Component {
     const updatedSequence = deepClone(currentSequence)
     const step = updatedSequence[i]
     updatedSequence[i] = !step
-    console.log({ name, i, step, notStep: !step })
     this.setState({ [name]: updatedSequence })
   }
 
   renderPlayButton() {
     const { isPlaying } = this.state
-    const innerHTML = isPlaying ? 'pause' : 'play'
-    return <button onClick={this.togglePlay}>{innerHTML}</button>
+    const innerHTML = isPlaying ?
+      <svg width="15" height="15" id="Capa_1"  viewBox="0 0 424.236 424.236" xmlns="http://www.w3.org/2000/svg"><path id="path-1_5_" d="m247.471 0h176.765v424.236h-176.765z" transform="translate(9 2)"/><path id="path-1_4_" d="m0 0h176.765v424.236h-176.765z" transform="translate(2 2)"/></svg> :
+      <svg width="20" height="20" viewBox="0 0 494.942 494.942" xmlns="http://www.w3.org/2000/svg"><path d="m35.353 0 424.236 247.471-424.236 247.471z"/></svg>
+    return <button className="play" onClick={this.togglePlay}>{innerHTML}</button>
   }
 
   renderSteps() {
@@ -147,10 +108,12 @@ export default class Controller extends React.Component {
         <div className="header">
           <h1 className="title">JS-808</h1>
           <span className="toolbar">
-            <button onClick={this.stop}>stop</button>
+            <button className="stop" onClick={this.stop}>
+              <svg width="15" height="15" id="Layer_1" viewBox="0 0 506.1 506.1" xmlns="http://www.w3.org/2000/svg"><path d="m489.609 0h-473.118c-9.108 0-16.491 7.383-16.491 16.491v473.118c0 9.107 7.383 16.491 16.491 16.491h473.119c9.107 0 16.49-7.383 16.49-16.491v-473.118c0-9.108-7.383-16.491-16.491-16.491z"/></svg>
+            </button>
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
-            <span>BPM</span>
+            <span className="bpm">BPM</span>
             <Sequence sequences={SEQUENCE_NAMES} onSelect={this.selectSequence}/>
           </span>
         </div>
