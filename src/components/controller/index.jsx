@@ -44,6 +44,10 @@ export default class Controller extends React.Component {
     }
   }
 
+  updateBpm = ({ target: { value }}) => {
+    this.setState({ bpm: value })
+  }
+
   renderPlayButton() {
     const { isPlaying } = this.state
     const innerHTML = isPlaying ? 'pause' : 'play'
@@ -68,8 +72,7 @@ export default class Controller extends React.Component {
           <span className="toolbar">
             <button onClick={this.stop}>stop</button>
             {this.renderPlayButton()}
-            <span>128</span>
-            {/* <input value="128"/> */}
+            <input value={this.state.bpm} onChange={this.updateBpm}/>
             <span>BPM</span>
             <span>Sequence 1</span>
           </span>
