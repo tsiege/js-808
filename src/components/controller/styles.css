@@ -27,3 +27,8 @@
 .step {
   padding: 5px 15px;
 }
+
+.step.playing {
+  color: white;
+  background-color: indianred;
+}

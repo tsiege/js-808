@@ -37,9 +37,11 @@ export default class Controller extends React.Component {
   }
 
   renderSteps() {
+    const { step } = this.state
     const steps = []
     for (let i = 0; i < 16; i++) {
-      steps.push(<span key={i} className="step">{i + 1}</span>)
+      const playingClassname = step === i ? 'playing' : ''
+      steps.push(<span key={i} className={`step ${playingClassname}`}>{i + 1}</span>)
     }
     return steps
   }
