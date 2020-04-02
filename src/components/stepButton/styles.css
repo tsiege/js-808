@@ -37,10 +37,10 @@
 }
 
 .step-button:nth-child(n+13):nth-last-child(n).on {
-  background-color: var(--stepWhite);
+  background-color: var(--stepBeige);
 }
 
 .step-button:nth-child(n+13):nth-last-child(n).playing {
   border: 0;
-  box-shadow: 0 0 10px var(--stepWhite);
+  box-shadow: 0 0 10px var(--stepBeige);
 }

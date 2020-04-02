@@ -1,14 +1,20 @@
 .controller {
   width: 800px;
-  padding: 5px;
+  padding: 30px 5px 5px;
   margin: 0 auto;
   background-color: var(--darkGrey);
 }
 
 .header {
   display: flex;
+  padding: 0px 10px;
   align-content: center;
   justify-content: space-between;
+}
+
+.title {
+  color: var(--red);
+  margin: 5px 0;
 }
 
 .toolbar {
@@ -16,13 +22,28 @@
   align-items: center;
 }
 
+.toolbar button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--fontGrey);
+  width: 30px;
+  height: 30px;
+  border-radius: 1px;
+  border: 1px solid var(--fontGrey);
+  font-size: 15px;
+  font-weight: 900;
+  margin: 0 2px;
+  background-color: var(--darkGrey);
+}
+
 .steps {
   display: flex;
   margin-bottom: 5px;
   justify-content: flex-end;
   align-content: space-between;
-  border-top: 1px solid var(--fontGrey);;
-  border-bottom: 1px solid var(--fontGrey);;
+  border-top: 1px solid var(--fontGrey);
+  border-bottom: 1px solid var(--fontGrey);
 }
 
 .step {
@@ -52,6 +73,6 @@
 }
 
 .step.playing:nth-child(n+13):nth-last-child(n) {
-  background-color: var(--stepWhite);
-  box-shadow: 0 0 10px var(--stepWhite);
+  background-color: var(--stepBeige);
+  box-shadow: 0 0 10px var(--stepBeige);
 }
