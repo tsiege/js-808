@@ -18,10 +18,11 @@
 
 .steps {
   display: flex;
+  margin-bottom: 5px;
   justify-content: flex-end;
   align-content: space-between;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid var(--fontGrey);;
+  border-bottom: 1px solid var(--fontGrey);;
 }
 
 .step {
