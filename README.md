@@ -1,4 +1,6 @@
 # JS-808
+## Demo
+[Check it here](https://tsiege.github.io/js-808/)
 
 ## Structure
 The Controller orchestrates how the steps are walked through. It allows a user to change the tempo via the BPM input. It also has play, pause, and stop buttons. It instantiates the tracks and sequence selector components. The Track is a fairly simple component that renders step buttons which are used to pass along user events through the track, back to the controller.
