@@ -1,7 +1,7 @@
 import React from 'react'
 import './styles.css'
 
-export default class Track extends React.Component {
+export default class StepButton extends React.Component {
   constructor(props) {
     super(props)
     this.state = { on: '' }
@@ -10,6 +10,7 @@ export default class Track extends React.Component {
   toggleOn = () => {
     const { on } = this.state
     this.setState({ on: on ? '' : 'on' })
+    this.props.toggleStepState(this.props.step)
   }
 
   render() {
