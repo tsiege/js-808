@@ -2,7 +2,7 @@
   width: 800px;
   padding: 5px;
   margin: 0 auto;
-  background-color: grey;
+  background-color: var(--darkGrey);
 }
 
 .header {
