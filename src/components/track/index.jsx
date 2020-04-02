@@ -48,7 +48,7 @@ export default class Track extends React.Component {
   render() {
     return (
       <div className="track">
-          <h3>{this.props.name}</h3>
+        <h3>{this.props.name}</h3>
         <span className="step-buttons">
           {this.renderStepButtons()}
         </span>

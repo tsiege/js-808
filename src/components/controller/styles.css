@@ -27,14 +27,34 @@
   justify-content: center;
   align-items: center;
   color: var(--fontGrey);
-  width: 30px;
-  height: 30px;
+  width: 34px;
+  height: 34px;
   border-radius: 1px;
   border: 1px solid var(--fontGrey);
   font-size: 15px;
   font-weight: 900;
   margin: 0 2px;
   background-color: var(--darkGrey);
+}
+
+.toolbar button:hover {
+  cursor: pointer;
+}
+
+.toolbar input {
+  text-align: center;
+  margin: 0;
+  border: 1px solid var(--fontGrey);
+  width: 45px;
+  height: 30px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--fontGrey);
+  background-color: var(--darkGrey);
+}
+
+.bpm {
+  padding: 0 5px;
 }
 
 .steps {

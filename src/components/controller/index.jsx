@@ -113,7 +113,7 @@ export default class Controller extends React.Component {
             </button>
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
-            <span>BPM</span>
+            <span className="bpm">BPM</span>
             <Sequence sequences={SEQUENCE_NAMES} onSelect={this.selectSequence}/>
           </span>
         </div>
