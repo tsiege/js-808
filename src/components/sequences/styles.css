@@ -1,0 +1,9 @@
+.step-button {
+  height: 50px;
+  width: 30px;
+  margin: 5px 5px 0;
+}
+
+.step-button.on {
+  background-color: salmon;
+}

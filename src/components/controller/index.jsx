@@ -1,8 +1,11 @@
 import React from 'react'
 import Track from '../track'
+import Sequence from '../sequences'
 import './styles.css'
 
 const TRACKS = ['Kick', 'Snare', 'Open Hat', 'Closed Hat']
+
+const SEQUENCE_NAMES = ['Sequence 1', 'Sequence 2', 'Sequence 3', 'None']
 
 // At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
 // We can assume that 8 steps = 1 bar, representing 4 beats.
@@ -81,7 +84,10 @@ export default class Controller extends React.Component {
 
   renderTracks() {
     const { step, isPlaying } = this.state
-    return TRACKS.map((name, i) => <Track key={i} name={name} step={step} isPlaying={isPlaying} />)
+    return TRACKS.map((name, i) => {
+      // const sequence = SEQUENCES[name]
+      return <Track key={i} name={name} step={step} isPlaying={isPlaying} />
+    })
   }
 
   render() {
@@ -94,7 +100,7 @@ export default class Controller extends React.Component {
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
             <span>BPM</span>
-            <span>Sequence 1</span>
+            <Sequence sequences={SEQUENCE_NAMES}/>
           </span>
         </div>
         <div className="steps">
