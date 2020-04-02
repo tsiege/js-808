@@ -8,8 +8,9 @@ export default class Sequence extends React.Component {
     this.state = {value: this.props.sequences[0]}
   }
 
-  handleChange = (event) => {
-    this.setState({value: event.target.value})
+  handleChange = ({ target: { value } }) => {
+    this.setState({ value })
+    this.props.onSelect(value)
   }
 
   renderOptions() {

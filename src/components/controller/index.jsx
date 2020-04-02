@@ -6,6 +6,32 @@ import './styles.css'
 const TRACKS = ['Kick', 'Snare', 'Open Hat', 'Closed Hat']
 
 const SEQUENCE_NAMES = ['Sequence 1', 'Sequence 2', 'Sequence 3', 'None']
+const SEQUENCES = {
+  'Sequence 1': {
+    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
+    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
+    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
+    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
+  },
+  'Sequence 2': {
+    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
+    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
+    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
+    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
+  },
+  'Sequence 3': {
+    Kick:         [false, true, false, false, true, true, false, true, false, false, false, true, true, false, true, false],
+    Snare:        [true, true, false, true, false, true, false, true, false, true, false, true, false, true, true, false],
+    'Open Hat':   [false, false, true, false, true, false, false, true, false, true, false, true, true, false, true, false],
+    'Closed Hat': [true, false, false, true, true, false, true, true, false, false, false, true, false, false, false, true],
+  },
+  None: {
+    Kick:         new Array(16).fill(false),
+    Snare:        new Array(16).fill(false),
+    'Open Hat':   new Array(16).fill(false),
+    'Closed Hat': new Array(16).fill(false),
+  }
+}
 
 // At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
 // We can assume that 8 steps = 1 bar, representing 4 beats.
@@ -13,6 +39,10 @@ const SEQUENCE_NAMES = ['Sequence 1', 'Sequence 2', 'Sequence 3', 'None']
 // but this has 16 steps, so I think it is ((60/BPM)*4)/16 ?? 8 feels slow
 function stepPerMs(bpm = 128) {
   return (((60 / bpm) * 4) / 16) * 1000
+}
+
+function deepClone (obj) {
+  return JSON.parse(JSON.stringify(obj))
 }
 
 export default class Controller extends React.Component {
@@ -23,6 +53,7 @@ export default class Controller extends React.Component {
       step: null,
       interval: null,
       isPlaying: false,
+      currentSequence: deepClone(SEQUENCES['Sequence 1'])
     }
   }
 
@@ -66,6 +97,11 @@ export default class Controller extends React.Component {
     }
   }
 
+  selectSequence = (name) => {
+    console.log(name)
+    this.setState({ currentSequence: deepClone(SEQUENCES[name]) })
+  }
+
   renderPlayButton() {
     const { isPlaying } = this.state
     const innerHTML = isPlaying ? 'pause' : 'play'
@@ -100,7 +136,7 @@ export default class Controller extends React.Component {
             {this.renderPlayButton()}
             <input value={this.state.bpm} onChange={this.updateBpm}/>
             <span>BPM</span>
-            <Sequence sequences={SEQUENCE_NAMES}/>
+            <Sequence sequences={SEQUENCE_NAMES} onSelect={this.selectSequence}/>
           </span>
         </div>
         <div className="steps">
