@@ -20,6 +20,15 @@ export default class Controller extends React.Component {
     }
   }
 
+  interval = () => {
+    const { step } = this.state
+    if (step === null || step === 15) {
+      this.setState({ step: 0 })
+    } else {
+      this.setState({ step: step + 1 })
+    }
+  }
+
   stop = () => {
     const { interval } = this.state
     clearInterval(interval)
@@ -32,20 +41,23 @@ export default class Controller extends React.Component {
       clearInterval(interval)
       this.setState({ isPlaying: false, interval: null })
     } else {
-      const interval = setInterval(() => {
-        const { step } = this.state
-        if (step === null || step === 15) {
-          this.setState({ step: 0 })
-        } else {
-          this.setState({ step: step + 1 })
-        }
-      }, stepPerMs(bpm))
+      const interval = setInterval(this.interval, stepPerMs(bpm))
       this.setState({ isPlaying: true, interval })
     }
   }
 
   updateBpm = ({ target: { value }}) => {
-    this.setState({ bpm: value })
+    const { interval: oldInterval, isPlaying } = this.state
+    if (isNaN(Number(value))) {
+      return
+    }
+    if (isPlaying) {
+      clearInterval(oldInterval)
+      const interval = setInterval(this.interval, stepPerMs(value))
+      this.setState({ interval, bpm: value })
+    } else {
+      this.setState({ bpm: value })
+    }
   }
 
   renderPlayButton() {
