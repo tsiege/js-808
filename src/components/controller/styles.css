@@ -25,7 +25,10 @@
 }
 
 .step {
-  padding: 5px 15px;
+  margin: 0px 5px;
+  padding: 5px;
+  width: 20px;
+  text-align: center;
 }
 
 .step.playing {
