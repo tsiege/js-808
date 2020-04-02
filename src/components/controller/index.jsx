@@ -1,5 +1,8 @@
 import React from 'react'
+import Track from '../track'
 import './styles.css'
+
+const TRACKS = ['Kick', 'Snare', 'Open Hat', 'Closed Hat']
 
 // At a 4/4 time signature of 60 BPM (beats per minute), we get 1 beat per second.
 // We can assume that 8 steps = 1 bar, representing 4 beats.
@@ -76,9 +79,13 @@ export default class Controller extends React.Component {
     return steps
   }
 
+  renderTracks() {
+    return TRACKS.map((name, i) => <Track key={i} name={name} />)
+  }
+
   render() {
     return (
-      <div className="Controller">
+      <div className="controller">
         <div className="header">
           <h1 className="title">JS-808</h1>
           <span className="toolbar">
@@ -92,6 +99,9 @@ export default class Controller extends React.Component {
         <div className="steps">
           {this.renderSteps()}
         </div>
+        <section className="tracks">
+          {this.renderTracks()}
+        </section>
       </div>
     )
   }
