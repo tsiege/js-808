@@ -8,6 +8,20 @@ export default class Track extends React.Component {
     this.state = { stepStates: new Array(16).fill(false) }
   }
 
+  playEffect() {
+    // noop for now
+    console.log(`${this.props.name} sound!`)
+  }
+
+  componentDidUpdate(prev) {
+    if (Number.isInteger(prev.step) && prev.isPlaying) {
+      const { stepStates } = this.state
+      if (stepStates[prev.step]) {
+        this.playEffect()
+      }
+    }
+  }
+
   toggleStepState = (i) => {
     const { stepStates } = this.state
     const updatedStepStates = [...stepStates]

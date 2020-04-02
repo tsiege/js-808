@@ -80,8 +80,8 @@ export default class Controller extends React.Component {
   }
 
   renderTracks() {
-    const { step } = this.state
-    return TRACKS.map((name, i) => <Track key={i} name={name} step={step} />)
+    const { step, isPlaying } = this.state
+    return TRACKS.map((name, i) => <Track key={i} name={name} step={step} isPlaying={isPlaying} />)
   }
 
   render() {
