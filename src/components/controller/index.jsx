@@ -32,11 +32,8 @@ export default class Controller extends React.Component {
 
   renderPlayButton() {
     const { isPlaying } = this.state
-    if (isPlaying) {
-      return <button onClick={this.togglePlay}>pause</button>
-    } else {
-      return <button onClick={this.togglePlay}>play</button>
-    }
+    const innerHTML = isPlaying ? 'pause' : 'play'
+    return <button onClick={this.togglePlay}>{innerHTML}</button>
   }
 
   renderSteps() {
