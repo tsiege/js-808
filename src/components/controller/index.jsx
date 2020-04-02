@@ -8,7 +8,8 @@ export default class Controller extends React.Component {
         <h1 className="title">JS-808</h1>
         <button>stop</button>
         <button>play</button>
-        <input value="128"/>
+        <span>128</span>
+        {/* <input value="128"/> */}
         <span>BPM</span>
         <span>Sequence 1</span>
       </div>
