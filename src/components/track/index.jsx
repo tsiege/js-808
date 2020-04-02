@@ -25,8 +25,12 @@ export default class Track extends React.Component {
   toggleStepState = (i) => {
     const { stepStates } = this.state
     const updatedStepStates = [...stepStates]
-    updatedStepStates[i] = !updatedStepStates[i]
+    const isPlaying = !updatedStepStates[i]
+    updatedStepStates[i] = isPlaying
     this.setState({ stepStates: updatedStepStates })
+    if (isPlaying) {
+      this.playEffect()
+    }
   }
 
   renderStepButtons() {
