@@ -30,6 +30,15 @@ export default class Controller extends React.Component {
     }
   }
 
+  renderPlayButton() {
+    const { isPlaying } = this.state
+    if (isPlaying) {
+      return <button onClick={this.togglePlay}>pause</button>
+    } else {
+      return <button onClick={this.togglePlay}>play</button>
+    }
+  }
+
   renderSteps() {
     const steps = []
     for (let i = 0; i < 16; i++) {
@@ -45,7 +54,7 @@ export default class Controller extends React.Component {
           <h1 className="title">JS-808</h1>
           <span className="toolbar">
             <button>stop</button>
-            <button onClick={this.togglePlay}>play</button>
+            {this.renderPlayButton()}
             <span>128</span>
             {/* <input value="128"/> */}
             <span>BPM</span>
